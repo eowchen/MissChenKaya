@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miss Chen Kaya — Stock Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#F7F2E8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem}
+.card{background:white;border-radius:20px;padding:2.5rem;width:min(420px,100%);box-shadow:0 4px 32px rgba(42,31,18,0.10)}
+h1{font-family:'Playfair Display',serif;font-size:1.5rem;color:#3B6B3B;text-align:center;margin-bottom:0.25rem}
+.sub{text-align:center;font-size:0.8rem;color:#9B8060;margin-bottom:2rem;letter-spacing:0.08em;text-transform:uppercase}
+label{font-size:11px;font-weight:500;color:#9B8060;text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px}
+input[type=password]{width:100%;padding:10px 14px;border:1px solid #E0D8CC;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;margin-bottom:1rem}
+input[type=password]:focus{border-color:#3B6B3B}
+.btn{width:100%;background:#3B6B3B;color:white;border:none;border-radius:40px;padding:13px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;cursor:pointer}
+.btn:disabled{opacity:0.5;cursor:not-allowed}
+.btn.gold{background:#B8860B}
+.msg{margin-top:0.75rem;padding:10px 14px;border-radius:10px;font-size:0.82rem;text-align:center;display:none}
+.msg.ok{background:#D4E8C8;color:#3B6B3B;display:block}
+.msg.err{background:#F5D0D0;color:#8B2020;display:block}
+.divider{height:1px;background:#F0E8D6;margin:1.5rem 0}
+.product-row{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;border-bottom:1px solid #F0E8D6}
+.product-row:last-of-type{border-bottom:none}
+.prod-name{font-weight:500;font-size:0.95rem;color:#2A1F12}
+.prod-size{font-size:0.76rem;color:#9B8060;margin-top:2px}
+.qty-wrap{display:flex;align-items:center;gap:8px}
+.qbtn{width:32px;height:32px;border-radius:50%;border:1px solid #E0D8CC;background:#F7F2E8;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;color:#5C4A30}
+.qbtn:hover{border-color:#3B6B3B;color:#3B6B3B}
+.qnum{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:#3B6B3B;min-width:36px;text-align:center}
+.qnum.zero{color:#8B2020}
+.qlbl{font-size:0.72rem;text-align:center;color:#9B8060;margin-top:2px}
+.qlbl.zero{color:#8B2020}
+.qlbl.low{color:#7A4F0A}
+.login-screen{}
+.admin-screen{display:none}
+.back{display:block;text-align:center;margin-top:1.25rem;font-size:0.82rem;color:#9B8060;text-decoration:none;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;width:100%}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Miss Chen Kaya</h1>
+  <div class="sub">Stock Management</div>
+
+  <!-- LOGIN -->
+  <div class="login-screen" id="loginScreen">
+    <label>Admin Password</label>
+    <input type="password" id="pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn" onclick="doLogin()" id="loginBtn">Sign In →</button>
+    <div class="msg" id="loginMsg"></div>
+  </div>
+
+  <!-- ADMIN -->
+  <div class="admin-screen" id="adminScreen">
+    <p style="font-size:0.8rem;color:#9B8060;margin-bottom:1rem">Tap + or − to update stock, then save.</p>
+
+    <div class="product-row">
+      <div><div class="prod-name">Classic Pandan Kaya</div><div class="prod-size">240g jar</div></div>
+      <div>
+        <div class="qty-wrap">
+          <button class="qbtn" onclick="chg(1,-1)">−</button>
+          <div><div class="qnum" id="n1">9</div><div class="qlbl ok" id="l1">9 available</div></div>
+          <button class="qbtn" onclick="chg(1,1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-row">
+      <div><div class="prod-name">Kaya & Waffle Bundle</div><div class="prod-size">240g jar + 6 mini waffles</div></div>
+      <div>
+        <div class="qty-wrap">
+          <button class="qbtn" onclick="chg(2,-1)">−</button>
+          <div><div class="qnum" id="n2">3</div><div class="qlbl low" id="l2">Only 3 left</div></div>
+          <button class="qbtn" onclick="chg(2,1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div style="background:#FFF8EC;border:1px solid #C8A04A;border-radius:12px;padding:16px;margin-bottom:1rem;font-size:13px;color:#5C4A30;line-height:1.7">
+      <strong style="display:block;margin-bottom:6px;color:#2A1F12">📊 Update Stock</strong>
+      To update stock numbers, edit your Google Sheet directly — the website updates automatically within seconds!<br><br>
+      <a href="https://docs.google.com/spreadsheets/d/16b0xlG5GZVO4qKxDAXgk4kPiuwCnP8N46yDFK04n2VE/edit" target="_blank" style="background:#3B6B3B;color:white;padding:8px 16px;border-radius:20px;text-decoration:none;font-weight:500;display:inline-block">Open Google Sheet →</a>
+    </div>
+    <button class="back" onclick="window.location.href='/'">← Back to website</button>
+  </div>
+</div>
+
+<script>
+// Simple client-side password check
+// The real password check happens server-side when saving
+var ADMIN_PW = '';
+var stock = {1: 9, 2: 3};
+
+// Load current stock on page load
+fetch('https://misschenkayabackup.netlify.app/.netlify/functions/get-stock')
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d && d.stock){
+      stock[1] = d.stock[1] !== undefined ? d.stock[1] : 9;
+      stock[2] = d.stock[2] !== undefined ? d.stock[2] : 3;
+      updateDisplay();
+    }
+  }).catch(function(){});
+
+function updateDisplay(){
+  [1,2].forEach(function(id){
+    var q = stock[id];
+    var nEl = document.getElementById('n'+id);
+    var lEl = document.getElementById('l'+id);
+    nEl.textContent = q;
+    nEl.className = 'qnum' + (q===0?' zero':'');
+    if(q===0){ lEl.textContent='SOLD OUT'; lEl.className='qlbl zero'; }
+    else if(q<=4){ lEl.textContent='Only '+q+' left'; lEl.className='qlbl low'; }
+    else{ lEl.textContent=q+' available'; lEl.className='qlbl ok'; }
+  });
+}
+
+function chg(id, d){
+  stock[id] = Math.max(0, stock[id]+d);
+  updateDisplay();
+}
+
+function doLogin(){
+  var pw = document.getElementById('pw').value;
+  var msg = document.getElementById('loginMsg');
+  var btn = document.getElementById('loginBtn');
+  if(!pw) return;
+
+  btn.disabled = true;
+  btn.textContent = 'Checking...';
+
+  // Verify by attempting a save with this password
+  // Direct client-side password check
+  if(pw === 'KayaQueen4880!' || pw === 'misschenkaya2024'){
+    ADMIN_PW = pw;
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminScreen').style.display = 'block';
+  } else {
+    msg.textContent = 'Incorrect password. Please try again.';
+    msg.className = 'msg err';
+    btn.disabled = false;
+    btn.textContent = 'Sign In →';
+  }
+}
+
+function saveStock(){
+  var btn = document.getElementById('saveBtn');
+  var msg = document.getElementById('saveMsg');
+  btn.disabled = true;
+  btn.textContent = 'Saving...';
+  msg.className = 'msg';
+
+  fetch('https://misschenkayabackup.netlify.app/.netlify/functions/set-stock', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({password: ADMIN_PW, stock1: stock[1], stock2: stock[2]})
+  }).then(function(r){ return r.json(); })
+  .then(function(d){
+    if(d.success){
+      msg.textContent = 'Stock updated! Website now shows the new numbers.';
+      msg.className = 'msg ok';
+    } else {
+      throw new Error(d.error || 'Save failed');
+    }
+    btn.disabled = false;
+    btn.textContent = 'Save & Update Website';
+  }).catch(function(err){
+    msg.textContent = 'Could not save: ' + err.message;
+    msg.className = 'msg err';
+    btn.disabled = false;
+    btn.textContent = 'Save & Update Website';
+  });
+}
+
+document.getElementById('pw').focus();
+</script>
+</body>
+</html>

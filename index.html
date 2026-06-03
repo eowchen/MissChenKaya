@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miss Chen Kaya</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#FAF6EE;--cream-dark:#F0E8D6;--pandan:#3B6B3B;--pandan-light:#5A9B5A;--pandan-pale:#D4E8C8;--coconut:#FFF9F0;--gold:#B8860B;--text-dark:#2A1F12;--text-mid:#5C4A30;--text-soft:#9B8060;--white:#FFFFFF;--border:rgba(92,61,30,0.15)}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden}
+nav{position:sticky;top:0;z-index:100;background:rgba(250,246,238,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{height:44px;width:auto;filter:invert(1) sepia(1) saturate(2) hue-rotate(75deg) brightness(0.4)}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--pandan);line-height:1.1}
+.nav-logo-text small{display:block;font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:400;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:0.875rem;color:var(--text-mid);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--pandan)}
+.cart-btn{display:flex;align-items:center;gap:8px;background:var(--pandan);color:var(--cream);border:none;border-radius:40px;padding:9px 18px;font-family:'DM Sans',sans-serif;font-size:0.875rem;font-weight:500;cursor:pointer}
+.cart-count{background:var(--gold);color:white;border-radius:50%;width:18px;height:18px;display:none;align-items:center;justify-content:center;font-size:11px;font-weight:500}
+.cart-count.visible{display:flex}
+.hero{min-height:88vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 clamp(1.5rem,5vw,4rem);gap:3rem;background:var(--cream)}
+.hero-text{padding:4rem 0}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;background:var(--pandan-pale);color:var(--pandan);font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:6px 14px;border-radius:40px;margin-bottom:1.5rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5vw,4.2rem);font-weight:600;line-height:1.1;color:var(--text-dark);margin-bottom:1rem}
+.hero h1 em{color:var(--pandan);font-style:italic}
+.hero-tagline{font-family:'Playfair Display',serif;font-size:1.15rem;font-style:italic;color:var(--gold);margin-bottom:1rem}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;color:var(--text-mid);line-height:1.8;margin-bottom:2.5rem;max-width:440px}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--pandan);color:var(--cream);border:none;border-radius:40px;padding:14px 28px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-ghost{background:transparent;color:var(--text-mid);border:1px solid var(--border);border-radius:40px;padding:14px 24px;font-family:'DM Sans',sans-serif;font-size:0.9rem;cursor:pointer;text-decoration:none}
+.hero-visual{display:flex;align-items:center;justify-content:center;position:relative}
+.hero-logo-wrap{width:min(460px,95%)}
+.hero-logo-wrap img{width:100%;height:auto}
+.hero-float-badge{position:absolute;bottom:2rem;left:-1rem;background:white;border:1px solid var(--border);border-radius:16px;padding:12px 16px;box-shadow:0 4px 24px rgba(42,31,18,0.08)}
+.hero-float-badge .num{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:var(--pandan)}
+.hero-float-badge .lbl{font-size:0.72rem;color:var(--text-soft)}
+.hero-float-tag{position:absolute;top:1.5rem;right:-0.5rem;background:var(--pandan);color:var(--cream);border-radius:40px;padding:7px 14px;font-size:0.78rem;font-weight:500;transform:rotate(3deg)}
+.divider{display:flex;align-items:center;gap:1.5rem;padding:1.5rem clamp(1.5rem,5vw,4rem);color:var(--text-soft);font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.story-who{padding:5rem clamp(1.5rem,5vw,4rem);display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center;background:var(--coconut)}
+.story-my{padding:5rem clamp(1.5rem,5vw,4rem);display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:center;background:var(--cream)}
+.story-visual{position:relative}
+.story-img{width:100%;aspect-ratio:4/5;border-radius:120px 120px 20px 20px;overflow:hidden;background:var(--pandan-pale)}
+.story-img img,.story-img-alt img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.story-img-alt{width:100%;aspect-ratio:4/5;border-radius:20px 20px 120px 120px;overflow:hidden;background:var(--cream-dark)}
+.story-accent{position:absolute;bottom:-1.5rem;right:-1.5rem;width:45%;aspect-ratio:1;border-radius:20px;overflow:hidden;border:4px solid var(--coconut)}
+.story-accent img,.story-accent-left img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.story-accent-left{position:absolute;bottom:-1.5rem;left:-1.5rem;width:45%;aspect-ratio:1;border-radius:20px;overflow:hidden;border:4px solid var(--cream)}
+.section-label{font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
+.story-who h2,.story-my h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.7rem);font-weight:600;line-height:1.2;margin-bottom:1.25rem;color:var(--text-dark)}
+.story-who p,.story-my p{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:300;color:var(--text-mid);line-height:1.85;margin-bottom:1.1rem}
+.story-who p a,.story-my p a{color:var(--pandan);text-decoration:none}
+.pullquote{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--pandan);border-left:3px solid var(--pandan-pale);padding-left:1.25rem;margin:1.5rem 0;line-height:1.6}
+.chip-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.5rem}
+.chip{display:flex;align-items:center;gap:6px;background:var(--cream);border:1px solid var(--border);border-radius:40px;padding:7px 13px;font-size:0.82rem;color:var(--text-mid)}
+.photo-strip{padding:3rem clamp(1.5rem,5vw,4rem);background:var(--pandan);overflow-x:auto}
+.photo-strip-inner{display:flex;align-items:center;justify-content:center;gap:1rem;min-width:min-content;margin:0 auto}
+.strip-item{display:flex;flex-direction:column;align-items:center;gap:0.75rem;flex-shrink:0}
+.strip-img{width:140px;height:140px;border-radius:50%;overflow:hidden;border:3px solid rgba(250,246,238,0.35)}
+.strip-img img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.strip-caption{font-size:0.72rem;color:rgba(250,246,238,0.75);text-align:center;font-style:italic;max-width:120px;line-height:1.4}
+.strip-arrow{font-size:1.25rem;color:rgba(250,246,238,0.4)}
+.shop{padding:5rem clamp(1.5rem,5vw,4rem);background:var(--cream)}
+.section-header{text-align:center;margin-bottom:2rem}
+.section-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.7rem);font-weight:600;margin-top:0.5rem;color:var(--text-dark)}
+.section-header p{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--text-soft);max-width:540px;margin:0.75rem auto 0;line-height:1.7}
+.storage-note{background:var(--pandan-pale);border:1px solid rgba(59,107,59,0.2);border-radius:16px;padding:1.25rem 1.5rem;max-width:700px;margin:0 auto 2.5rem;display:flex;gap:1rem;align-items:flex-start}
+.storage-note p{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:300;color:var(--text-mid);line-height:1.75;margin:0}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:700px;margin:0 auto}
+.product-card{background:var(--white);border:1px solid var(--border);border-radius:24px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(42,31,18,0.1)}
+.product-img{aspect-ratio:4/3;background:var(--pandan-pale);display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden}
+.product-img img{width:100%;height:100%;object-fit:cover;object-position:center}
+.stock-badge{position:absolute;top:12px;right:12px;font-size:0.72rem;font-weight:500;padding:4px 10px;border-radius:20px}
+.s-ok{background:#D4E8C8;color:var(--pandan)}
+.s-low{background:#FAE8C8;color:#7A4F0A}
+.s-out{background:#F5D0D0;color:#8B2020}
+.product-info{padding:1.25rem 1.25rem 1.5rem}
+.product-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--text-dark);margin-bottom:0.35rem}
+.product-desc{font-size:0.84rem;color:var(--text-soft);line-height:1.55;margin-bottom:0.5rem}
+.product-size{font-size:0.76rem;color:var(--text-soft);margin-bottom:1rem;font-style:italic}
+.product-footer{display:flex;align-items:center;justify-content:space-between;gap:0.75rem}
+.product-price{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:600;color:var(--pandan)}
+.product-price .cur{font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:400;color:var(--text-soft);margin-right:1px}
+.qty-ctrl{display:flex;align-items:center;gap:5px}
+.qty-btn{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--cream);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--text-mid)}
+.qty-btn:disabled{opacity:0.3;cursor:not-allowed}
+.qty-num{font-size:0.88rem;font-weight:500;min-width:18px;text-align:center}
+.add-btn{background:var(--pandan);color:var(--cream);border:none;border-radius:40px;padding:8px 16px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;cursor:pointer;white-space:nowrap}
+.add-btn:hover{background:var(--pandan-light)}
+.add-btn:disabled{background:#CCC;cursor:not-allowed}
+.stock-bar-wrap{margin-top:0.75rem}
+.stock-bar-label{font-size:0.76rem;color:var(--text-soft);margin-bottom:3px}
+.stock-bar{height:3px;background:var(--cream-dark);border-radius:2px;overflow:hidden}
+.stock-fill{height:100%;border-radius:2px}
+.cart-overlay{position:fixed;inset:0;background:rgba(42,31,18,0.4);z-index:200;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.cart-overlay.open{opacity:1;pointer-events:all}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,95vw);background:var(--cream);z-index:201;transform:translateX(100%);transition:transform 0.35s;display:flex;flex-direction:column;border-left:1px solid var(--border)}
+.cart-drawer.open{transform:translateX(0)}
+.cart-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.cart-head h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600}
+.cart-close{background:none;border:1px solid var(--border);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;color:var(--text-mid);display:flex;align-items:center;justify-content:center}
+.cart-items{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.cart-empty{text-align:center;padding:3rem 1rem;color:var(--text-soft)}
+.cart-item{display:flex;align-items:center;gap:0.875rem;padding:0.875rem 0;border-bottom:1px solid var(--border)}
+.cart-item:last-child{border-bottom:none}
+.ci-thumb{width:52px;height:52px;border-radius:10px;background:var(--pandan-pale);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.ci-info{flex:1}
+.ci-name{font-size:0.88rem;font-weight:500;margin-bottom:2px}
+.ci-price{font-size:0.8rem;color:var(--text-soft)}
+.ci-ctrl{display:flex;align-items:center;gap:5px}
+.ci-qbtn{width:24px;height:24px;border-radius:50%;border:1px solid var(--border);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem}
+.ci-qnum{font-size:0.82rem;font-weight:500;min-width:16px;text-align:center}
+.ci-total{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--pandan);min-width:48px;text-align:right}
+.cart-foot{padding:1.25rem 1.5rem;border-top:1px solid var(--border);background:var(--coconut)}
+.cart-sum-row{display:flex;justify-content:space-between;font-size:0.85rem;color:var(--text-mid);padding:3px 0}
+.cart-sum-row.total{font-size:1rem;font-weight:600;color:var(--text-dark);border-top:1px solid var(--border);margin-top:8px;padding-top:10px}
+.cart-sum-row.total span:last-child{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--pandan)}
+.checkout-btn{width:100%;margin-top:1rem;background:var(--pandan);color:var(--cream);border:none;border-radius:40px;padding:14px;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.modal-overlay{position:fixed;inset:0;background:rgba(42,31,18,0.5);z-index:300;display:none;align-items:flex-start;justify-content:center;padding:2rem 1rem;overflow-y:auto}
+.modal-overlay.open{display:flex}
+.modal{background:var(--cream);border-radius:24px;width:min(560px,100%);padding:2rem;position:relative;margin:auto}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:1px solid var(--border);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;color:var(--text-mid);display:flex;align-items:center;justify-content:center}
+.modal h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;margin-bottom:1.5rem}
+.m-step{display:none}.m-step.active{display:block}
+.prog-bar{display:flex;align-items:center;margin-bottom:1.75rem}
+.pb-step{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-soft)}
+.pb-step.done{color:var(--pandan)}.pb-step.act{color:var(--text-dark);font-weight:500}
+.pb-dot{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;background:var(--white)}
+.pb-step.done .pb-dot{background:var(--pandan-pale);border-color:var(--pandan);color:var(--pandan)}
+.pb-step.act .pb-dot{background:var(--pandan);border-color:var(--pandan);color:var(--cream)}
+.pb-line{flex:1;height:1px;background:var(--border);margin:0 4px}
+.pb-line.done{background:var(--pandan-pale)}
+.field-row{display:grid;gap:10px;margin-bottom:0.875rem}
+.field-row.two{grid-template-columns:1fr 1fr}
+.fld{display:flex;flex-direction:column;gap:4px}
+.fld label{font-size:11px;font-weight:500;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.06em}
+.fld input,.fld select,.fld textarea{font-family:'DM Sans',sans-serif;font-size:14px;padding:9px 12px;border:1px solid var(--border);border-radius:10px;background:var(--white);color:var(--text-dark);outline:none}
+.fld textarea{resize:vertical;min-height:70px}
+.notice-box{display:flex;align-items:flex-start;gap:8px;background:#FFF8EC;border:1px solid #C8A04A;border-radius:10px;padding:10px 14px;font-size:0.82rem;color:var(--text-mid);line-height:1.55;margin-top:0.5rem}
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.pay-card{border:1px solid var(--border);border-radius:14px;padding:1rem;cursor:pointer;position:relative}
+.pay-card.sel{border:1.5px solid var(--pandan);background:var(--pandan-pale)}
+.pay-card input{position:absolute;top:10px;right:10px}
+.pay-card .ptitle{font-size:0.88rem;font-weight:500;margin:6px 0 3px}
+.pay-card .psub{font-size:0.76rem;color:var(--text-soft);line-height:1.4}
+.pay-badge{font-size:0.7rem;font-weight:500;padding:2px 8px;border-radius:20px;display:inline-block}
+.pb-free{background:var(--pandan-pale);color:var(--pandan)}
+.pb-card{background:#E6F1FB;color:#185FA5}
+.info-box{border-radius:10px;padding:0.875rem;font-size:0.82rem;line-height:1.6;margin-top:0.75rem;display:none}
+.info-green{background:var(--pandan-pale);color:var(--pandan)}
+.info-blue{background:#E6F1FB;color:#185FA5}
+.info-box.show{display:block}
+.fee-row{display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text-mid);padding:4px 0}
+.fee-row.tot{font-size:0.95rem;font-weight:600;color:var(--text-dark);border-top:1px solid var(--border);margin-top:6px;padding-top:8px}
+.fee-warn{color:#854F0B}
+.sum-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.sum-item:last-child{border-bottom:none}
+.sum-item-info{flex:1;font-size:0.85rem}
+.sum-item-info b{font-weight:500}
+.sum-item-info span{display:block;color:var(--text-soft);font-size:0.76rem}
+.sum-item-price{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--pandan)}
+.modal-actions{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem;gap:0.75rem}
+.btn-back{background:none;border:1px solid var(--border);border-radius:40px;padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:0.85rem;cursor:pointer;color:var(--text-mid)}
+.btn-fwd{background:var(--pandan);color:var(--cream);border:none;border-radius:40px;padding:10px 22px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;cursor:pointer}
+.btn-fwd:disabled{opacity:0.35;cursor:not-allowed}
+.confirm-wrap{text-align:center;padding:1.5rem 0}
+.confirm-icon{width:56px;height:56px;border-radius:50%;background:var(--pandan-pale);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.8rem}
+.confirm-wrap h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;margin-bottom:0.5rem}
+.confirm-wrap p{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:var(--text-mid);line-height:1.7;max-width:380px;margin:0 auto 1.25rem}
+.confirm-detail{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1rem;text-align:left;font-size:0.82rem;line-height:1.9;color:var(--text-mid);max-width:380px;margin:0 auto}
+.confirm-detail strong{color:var(--text-dark);font-weight:500}
+.how{padding:5rem clamp(1.5rem,5vw,4rem);background:var(--coconut)}
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:3rem}
+.how-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:1.75rem 1.25rem;text-align:center}
+.how-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:600;color:var(--pandan-pale);line-height:1}
+.how-icon{font-size:1.9rem;margin:0.5rem 0}
+.how-title{font-weight:500;font-size:0.9rem;margin-bottom:0.4rem}
+.how-desc{font-size:0.8rem;color:var(--text-soft);line-height:1.55}
+.cta-band{padding:5rem clamp(1.5rem,5vw,4rem);background:var(--pandan);color:var(--cream);text-align:center}
+.cta-band h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;line-height:1.2;margin-bottom:0.75rem}
+.cta-band .tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;opacity:0.85;margin-bottom:0.75rem}
+.cta-band p{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;opacity:0.8;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.btn-cream{background:var(--cream);color:var(--pandan);border:none;border-radius:40px;padding:14px 30px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.signup{padding:4rem clamp(1.5rem,5vw,4rem);background:var(--cream-dark);text-align:center}
+.signup h2{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:600;color:var(--text-dark);margin:0.5rem 0 0.75rem}
+.signup p{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:var(--text-mid);max-width:420px;margin:0 auto 2rem;line-height:1.7}
+.signup-form{display:flex;flex-direction:column;align-items:center;gap:0.75rem;max-width:420px;margin:0 auto}
+.signup-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;width:100%}
+.signup-input{font-family:'DM Sans',sans-serif;font-size:14px;padding:11px 14px;border:1px solid var(--border);border-radius:10px;background:var(--white);outline:none;width:100%}
+.signup-btn{background:var(--pandan);color:var(--cream);border:none;border-radius:40px;padding:12px 32px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;cursor:pointer;width:100%}
+.signup-msg{font-size:0.85rem;margin-top:0.5rem;display:none}
+footer{background:var(--text-dark);color:var(--cream);padding:3rem clamp(1.5rem,5vw,4rem)}
+.contact{padding:5rem clamp(1.5rem,5vw,4rem);background:var(--cream);text-align:center}
+.contact h2{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:600;color:var(--text-dark);margin:0.5rem 0 0.75rem}
+.contact p{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:var(--text-mid);max-width:420px;margin:0 auto 2.5rem;line-height:1.7}
+.contact-form{max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:1rem;text-align:left}
+.contact-form input,.contact-form textarea{font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text-dark);background:var(--coconut);border:1px solid var(--border);border-radius:10px;padding:14px 16px;outline:none;transition:border-color 0.2s;resize:none}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--pandan)}
+.contact-form textarea{min-height:130px}
+.contact-form button{background:var(--pandan);color:var(--cream);border:none;border-radius:40px;padding:14px 28px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;cursor:pointer;transition:opacity 0.2s;align-self:center}
+.contact-form button:hover{opacity:0.85}
+.contact-form button:disabled{opacity:0.5;cursor:not-allowed}
+.contact-msg{font-size:0.85rem;text-align:center;margin-top:0.25rem;display:none}
+.foot-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.foot-logo{height:60px;width:auto;opacity:0.85;margin-bottom:0.75rem}
+.foot-brand{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:#D4E8C8;margin-bottom:0.5rem}
+.foot-tagline{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;color:rgba(250,246,238,0.55);line-height:1.7}
+.foot-col h4{font-size:0.7rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(250,246,238,0.4);margin-bottom:0.875rem}
+.foot-col ul{list-style:none}
+.foot-col ul li{margin-bottom:0.5rem}
+.foot-col ul li a{font-size:0.85rem;color:rgba(250,246,238,0.65);text-decoration:none}
+.foot-bottom{border-top:1px solid rgba(250,246,238,0.1);padding-top:1.25rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+.foot-bottom p{font-size:0.78rem;color:rgba(250,246,238,0.35)}
+.notif{position:fixed;bottom:2rem;right:2rem;background:var(--pandan);color:var(--cream);padding:11px 18px;border-radius:40px;font-size:0.85rem;font-weight:500;z-index:999;transform:translateY(4rem);opacity:0;transition:all 0.35s;pointer-events:none;box-shadow:0 8px 28px rgba(42,31,18,0.18)}
+.notif.show{transform:translateY(0);opacity:1}
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;gap:1.5rem;padding-top:2.5rem;text-align:center}
+  .hero-visual{order:-1}.hero-logo-wrap{width:min(300px,85vw)}
+  .hero-ctas{justify-content:center}.hero-sub{margin:0 auto 2.5rem}
+  .story-who,.story-my{grid-template-columns:1fr;gap:2rem}
+  .story-visual{max-width:320px;margin:0 auto}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}.pay-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<form name="kaya-order" netlify netlify-honeypot="bot-field" hidden>
+  <input name="bot-field"><input name="order-number"><input name="customer-name">
+  <input name="customer-email"><input name="customer-phone"><input name="items">
+  <input name="subtotal"><input name="processing-fee"><input name="total">
+  <input name="payment-method"><input name="pickup-date"><input name="pickup-time"><input name="notes">
+</form>
+
+<nav>
+  <a href="#top" class="nav-logo">
+    <img src="images/img1.png" alt="Miss Chen Kaya">
+    <div class="nav-logo-text">Miss Chen Kaya<small>Handmade Nonya Kaya</small></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#story">Her Story</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#signup">Updates</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="cart-btn" id="cartToggle">🛒 Cart <span class="cart-count" id="cartCount">0</span></button>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-text">
+    <div class="hero-eyebrow">✦ Small batch · Made fresh · Flash frozen</div>
+    <h1>Taste the <em>richest</em><br>kaya in town</h1>
+    <p class="hero-tagline">"Spreading joy one jar at a time"</p>
+    <p class="hero-sub">Made from a time-honoured Nonya recipe — fresh pandan leaves, coconut milk, and eggs, slow-stirred to luscious perfection. Made fresh and flash-frozen so you get kaya at its very best.</p>
+    <div class="hero-ctas">
+      <a href="#shop" class="btn-primary">Shop Now →</a>
+      <a href="#story" class="btn-ghost">Her Story</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-logo-wrap"><img src="images/img2.png" alt="Miss Chen Kaya"></div>
+    <div class="hero-float-badge"><div class="num">100%</div><div class="lbl">Natural ingredients</div></div>
+    <div class="hero-float-tag">✦ Nonya Recipe</div>
+  </div>
+</section>
+
+<div class="divider">"Sharing food is a way of preserving culture"</div>
+
+<!-- HERO PRODUCT PHOTO -->
+<section style="background:var(--cream);padding:0 clamp(1.5rem,5vw,4rem) 5rem">
+  <div style="max-width:900px;margin:0 auto;border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(42,31,18,0.12);position:relative">
+    <img src="images/hero.jpg" alt="Miss Chen Kaya jars with fresh ingredients" style="width:100%;height:auto;display:block">
+    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(42,31,18,0.7) 0%,transparent 100%);padding:2rem;color:white">
+      <p style="font-family:'Playfair Display',serif;font-size:clamp(1.2rem,3vw,1.8rem);font-style:italic;margin:0">"Made with fresh eggs, coconut milk and pandan — every single time."</p>
+    </div>
+  </div>
+</section>
+
+<section class="story-who" id="story">
+  <div class="story-visual">
+    <div class="story-img"><img src="images/img3.jpg" alt="Izzy today"></div>
+    <div class="story-accent"><img src="images/img4.jpg" alt="Izzy as a child"></div>
+  </div>
+  <div>
+    <p class="section-label">Who Is Miss Chen?</p>
+    <h2>Born between two worlds,<br>shaped by both</h2>
+    <p>Miss Chen — Izzy — is the eldest grandchild of the Chen family, a lineage rooted in Singaporean and Malaysian heritage. Born in the United States and raised in Canada, she grew up learning that food is the thread that ties cultures together.</p>
+    <p>Her deep love for Nonya desserts traces back to her grandmothers, who carried time-honoured recipes from Southeast Asia and shared them freely — always in a kitchen full of warmth and laughter.</p>
+    <div class="pullquote">"Sharing food is a way of preserving my unique culture."</div>
+    <div class="chip-row">
+      <span class="chip">🇸🇬 Singaporean roots</span>
+      <span class="chip">🇲🇾 Malaysian heritage</span>
+      <span class="chip">🍃 Nonya tradition</span>
+    </div>
+  </div>
+</section>
+
+<section class="story-my">
+  <div>
+    <p class="section-label">Her Story</p>
+    <h2>Raised in kitchens,<br>cooking with love</h2>
+    <p>From the moment she could eat solid food, Izzy's palate was being shaped — by bold flavours, fragrant spices, and the kind of cooking that doesn't just feed but connects. By the time she could walk, she was already a fixture in the kitchen, playing sous chef in her little apron.</p>
+    <p>Her father, <a href="https://www.instagram.com/chefalexchen/" target="_blank" rel="noopener">Chef Alex Chen</a>, taught her that food isn't about survival — it's about sharing, bringing people together around one table, over something made with care.</p>
+    <p>When the world slowed down during COVID, the kitchen sped up. Father and daughter filled their first jars, tied on their aprons, and Miss Chen Kaya was born. Izzy hasn't stopped stirring since.</p>
+    <div class="pullquote">"He cooks to share and to unite. That's the foundation of everything I do."</div>
+  </div>
+  <div class="story-visual">
+    <div class="story-img-alt"><img src="images/img5.jpg" alt="First jars with Dad"></div>
+    <div class="story-accent-left"><img src="images/img6.jpg" alt="Izzy as a tiny tot with Dad"></div>
+  </div>
+</section>
+
+<section class="photo-strip">
+  <div class="photo-strip-inner">
+    <div class="strip-item"><div class="strip-img"><img src="images/img6.jpg" alt="Daddy's little sous chef"></div><div class="strip-caption">Daddy's little sous chef</div></div>
+    <div class="strip-arrow">→</div>
+    <div class="strip-item"><div class="strip-img"><img src="images/img4.jpg" alt="Growing up loving food"></div><div class="strip-caption">Growing up loving food</div></div>
+    <div class="strip-arrow">→</div>
+    <div class="strip-item"><div class="strip-img"><img src="images/img5.jpg" alt="First jars with Dad"></div><div class="strip-caption">First jars, with Dad</div></div>
+    <div class="strip-arrow">→</div>
+    <div class="strip-item"><div class="strip-img"><img src="images/img3.jpg" alt="Miss Chen today"></div><div class="strip-caption">Miss Chen today</div></div>
+  </div>
+</section>
+
+<section class="shop" id="shop">
+  <div class="section-header">
+    <p class="section-label">Made Fresh · Flash Frozen</p>
+    <h2>Order Your Kaya</h2>
+    <p>Every jar is made fresh and flash-frozen to lock in flavour — so you get kaya at its very best, whenever you're ready for it.</p>
+  </div>
+  <div class="storage-note">
+    <div style="font-size:1.75rem;flex-shrink:0">🧊</div>
+    <p>Jars arrive frozen and can be kept in the freezer for <strong>3–4 months</strong>. When ready to enjoy, thaw overnight in the fridge and use within <strong>30 days of thawing</strong>.</p>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<section class="how" id="how">
+  <div class="section-header">
+    <p class="section-label">The Process</p>
+    <h2>From our kitchen to your table</h2>
+  </div>
+  <div class="how-grid">
+    <div class="how-card"><div class="how-num">01</div><div class="how-icon">📦</div><div class="how-title">Place your order</div><div class="how-desc">Choose your jars and check out. Each batch is made in small quantities.</div></div>
+    <div class="how-card"><div class="how-num">02</div><div class="how-icon">🫙</div><div class="how-title">Made fresh</div><div class="how-desc">Your kaya is hand-stirred in small batches. No shortcuts, no preservatives.</div></div>
+    <div class="how-card"><div class="how-num">03</div><div class="how-icon">💳</div><div class="how-title">Send payment</div><div class="how-desc">Pay via Interac e-Transfer (free) or credit card via Square.</div></div>
+    <div class="how-card"><div class="how-num">04</div><div class="how-icon">🍞</div><div class="how-title">Pickup & enjoy</div><div class="how-desc">Collect at your chosen time. Thaw overnight. Spread on buttered toast!</div></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Ready for something<br><em>truly special?</em></h2>
+  <p class="tagline">Spreading joy one jar at a time</p>
+  <p>Each batch is made fresh and flash-frozen in small quantities. Once they're gone, the next batch takes time — order yours while available.</p>
+  <a href="#shop" class="btn-cream">Order Your Kaya →</a>
+</section>
+
+<section class="signup" id="signup">
+  <p class="section-label" style="text-align:center">Stay in the loop</p>
+  <h2>Be first to know<br>when a new batch is ready</h2>
+  <p>Batches sell out fast. Sign up and we'll let you know the moment new jars are available.</p>
+  <div class="signup-form">
+    <div class="signup-row">
+      <input class="signup-input" type="text" id="mcFirst" placeholder="First name">
+      <input class="signup-input" type="email" id="mcEmail" placeholder="Email address">
+    </div>
+    <button class="signup-btn" id="mcBtn" onclick="doSignup()">Notify me when stock is available →</button>
+    <p class="signup-msg" id="mcMsg"></p>
+  </div>
+</section>
+
+
+<section class="contact" id="contact">
+  <p class="section-label" style="text-align:center">Get in Touch</p>
+  <h2>Have a question?<br><em>We'd love to hear from you</em></h2>
+  <p>Whether it's about an order, allergies, or a bulk request — send Izzy a message and she'll get back to you soon.</p>
+  <div class="contact-form">
+    <input type="text" id="ctName" placeholder="Your name">
+    <input type="email" id="ctEmail" placeholder="Your email">
+    <textarea id="ctMessage" placeholder="Your message"></textarea>
+    <button id="ctBtn" onclick="doContact()">Send Message →</button>
+    <p class="contact-msg" id="ctMsg"></p>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="foot-grid">
+    <div>
+      <img src="images/img1.png" alt="Miss Chen Kaya" class="foot-logo">
+      <div class="foot-brand">Miss Chen Kaya</div>
+      <p class="foot-tagline">Handmade pandan kaya from a time-honoured Nonya recipe. Made with love, in small batches, one jar at a time.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Shop</h4>
+      <ul><li><a href="#shop">Classic Pandan Kaya</a></li><li><a href="#shop">Kaya &amp; Waffle Bundle</a></li></ul>
+    </div>
+    <div class="foot-col">
+      <h4>Info</h4>
+      <ul><li><a href="#story">Her Story</a></li><li><a href="#how">How It Works</a></li><li><a href="mailto:misschen@chefalexchen.com">Contact</a></li></ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2025 Miss Chen Kaya. All rights reserved.</p>
+    <p>misschenkaya.com</p>
+  </div>
+</footer>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head"><h3>Your Order</h3><button class="cart-close" id="cartClose">✕</button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-sum-row"><span>Subtotal</span><span id="cSubtotal">$0.00</span></div>
+    <div class="cart-sum-row"><span>Shipping</span><span>Pickup only</span></div>
+    <div class="cart-sum-row total"><span>Total</span><span id="cTotal">$0.00</span></div>
+    <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="prog-bar">
+      <div class="pb-step act" id="pb1"><div class="pb-dot">1</div><span>Details</span></div>
+      <div class="pb-line" id="pl1"></div>
+      <div class="pb-step" id="pb2"><div class="pb-dot">2</div><span>Payment</span></div>
+      <div class="pb-line" id="pl2"></div>
+      <div class="pb-step" id="pb3"><div class="pb-dot">3</div><span>Review</span></div>
+    </div>
+    <div class="m-step active" id="ms1">
+      <h2>Your details</h2>
+      <div class="field-row two">
+        <div class="fld"><label>First name</label><input type="text" id="fname" placeholder="e.g. Sarah"></div>
+        <div class="fld"><label>Last name</label><input type="text" id="lname" placeholder="e.g. Wong"></div>
+      </div>
+      <div class="field-row">
+        <div class="fld"><label>Email address</label><input type="email" id="email" placeholder="you@email.com"></div>
+        <div class="fld"><label>Phone number</label><input type="tel" id="phone" placeholder="+1 604 000 0000"></div>
+      </div>
+      <div class="field-row two">
+        <div class="fld"><label>Pickup date</label><input type="date" id="pickupDate"></div>
+        <div class="fld"><label>Pickup time window</label>
+          <select id="pickupTime">
+            <option value="">— Choose a window —</option>
+            <option value="8 am - 11 am">8 am – 11 am</option>
+            <option value="11 am - 2 pm">11 am – 2 pm</option>
+            <option value="2 pm - 5 pm">2 pm – 5 pm</option>
+            <option value="5 pm - 8 pm">5 pm – 8 pm</option>
+          </select>
+        </div>
+      </div>
+      <div class="notice-box">⏰ <span>Please select a pickup date and time <strong>at least 24 hours after placing your order</strong>.</span></div>
+      <div class="field-row" style="margin-top:0.875rem">
+        <div class="fld"><label>Notes (optional)</label><textarea id="notes" placeholder="Anything Miss Chen should know..."></textarea></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-back" onclick="closeModal()">Cancel</button>
+        <button class="btn-fwd" id="btnTo2" disabled onclick="mStep(2)">Continue →</button>
+      </div>
+    </div>
+    <div class="m-step" id="ms2">
+      <h2>How would you like to pay?</h2>
+      <div class="pay-grid">
+        <label class="pay-card sel" onclick="selPay('et',this)">
+          <input type="radio" name="pay" checked>
+          <span class="pay-badge pb-free">No fees</span>
+          <div class="ptitle">Interac e-Transfer</div>
+          <div class="psub">Send directly from your bank. Zero fees.</div>
+        </label>
+        <label class="pay-card" onclick="selPay('cc',this)">
+          <input type="radio" name="pay">
+          <span class="pay-badge pb-card">Credit / Debit</span>
+          <div class="ptitle">Card via Square</div>
+          <div class="psub">Secure Square link. Processing fee added.</div>
+        </label>
+      </div>
+      <div class="info-box info-green show" id="etInfo"><strong>How it works:</strong> Send your Interac e-Transfer to <strong>misschen@chefalexchen.com</strong> for the exact amount shown.</div>
+      <div class="info-box info-blue" id="ccInfo"><strong>Credit card fee:</strong> Square charges 2.9% + $0.30. This fee is added to your total. You'll be redirected to Square's secure checkout.</div>
+      <div style="margin-top:1rem;border-top:1px solid var(--border);padding-top:0.875rem">
+        <div class="fee-row"><span>Order subtotal</span><span id="fSubtotal"></span></div>
+        <div class="fee-row fee-warn" id="fCCRow" style="display:none"><span>Square processing fee (2.9% + $0.30)</span><span id="fCCVal"></span></div>
+        <div class="fee-row tot"><span>Total to pay</span><span id="fTotal"></span></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-back" onclick="mStep(1)">← Back</button>
+        <button class="btn-fwd" onclick="mStep(3)">Review order →</button>
+      </div>
+    </div>
+    <div class="m-step" id="ms3">
+      <h2>Review your order</h2>
+      <div id="revItems"></div>
+      <div style="margin-top:0.875rem;border-top:1px solid var(--border);padding-top:0.875rem">
+        <div class="fee-row"><span>Subtotal</span><span id="revSub"></span></div>
+        <div class="fee-row fee-warn" id="revFeeRow" style="display:none"><span>Processing fee</span><span id="revFee"></span></div>
+        <div class="fee-row tot"><span>Total</span><span id="revTotal"></span></div>
+      </div>
+      <div style="margin-top:1rem;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:0.875rem;font-size:0.82rem;line-height:1.85;color:var(--text-mid)">
+        <span id="revName" style="color:var(--text-dark);font-weight:500;display:block"></span>
+        <span id="revEmail"></span> · <span id="revPhone"></span><br>
+        <span id="revPickup"></span><br>
+        <span id="revPay" style="color:var(--pandan);font-weight:500"></span>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-back" onclick="mStep(2)">← Back</button>
+        <button class="btn-fwd" id="placeBtn" onclick="placeOrder()" style="background:#27500A">✓ Place Order</button>
+      </div>
+    </div>
+    <div class="m-step" id="ms4">
+      <div class="confirm-wrap">
+        <div class="confirm-icon">✓</div>
+        <h2>Order received!</h2>
+        <p id="confMsg"></p>
+        <div class="confirm-detail" id="confDetail"></div>
+        <button class="btn-cream" style="margin-top:1.5rem;color:var(--pandan);background:var(--pandan-pale)" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="notif" id="notif"></div>
+
+<script>
+var PRODUCTS = [
+  {id:1,name:'Classic Pandan Kaya',desc:'Our signature Nonya kaya — fragrant pandan, velvety coconut milk, slow-stirred with love.',size:'240g jar',price:8.50,stock:0,maxStock:36},
+  {id:2,name:'Kaya & Mini Waffle Bundle',desc:'One jar of Classic Pandan Kaya paired with a 6-pack of mini Belgian waffles. A perfect match.',size:'240g jar + 6 mini waffles',price:18.00,stock:0,maxStock:36}
+];
+var stockLoaded = false; // prevents ordering before real stock loads
+var ETRANSFER='misschen@chefalexchen.com';
+var qty={1:1,2:1};
+var cart={1:0,2:0};
+var payMethod='et';
+
+function fmt(n){return '$'+n.toFixed(2);}
+function sub(){return PRODUCTS.reduce(function(s,p){return s+p.price*cart[p.id];},0);}
+function ccFee(s){return Math.round((s*0.029+0.30)*100)/100;}
+function grand(){var s=sub();return payMethod==='cc'?s+ccFee(s):s;}
+function sCls(p){return p.stock===0?'s-out':p.stock<=4?'s-low':'s-ok';}
+function sLbl(p){return p.stock===0?'Sold out':p.stock<=4?'Only '+p.stock+' left!':'In stock';}
+function sCol(p){return p.stock===0?'#8B2020':p.stock<=4?'#7A4F0A':'#3B6B3B';}
+
+function renderProducts(){
+  var g=document.getElementById('productsGrid');
+  var h='';
+  for(var i=0;i<PRODUCTS.length;i++){
+    var p=PRODUCTS[i];
+    var av=p.stock-cart[p.id];
+    var q=qty[p.id];
+    var out=p.stock===0;
+    var pct=Math.round(p.stock/p.maxStock*100);
+    var imgSrc=p.id===2?'images/product2.jpg':'images/product1.jpg';
+    h+='<div class="product-card">';
+    h+='<div class="product-img"><img src="'+imgSrc+'" alt="'+p.name+'">';
+    h+='<span class="stock-badge '+(stockLoaded?sCls(p):'s-ok')+'">'+(stockLoaded?sLbl(p):'Loading...')+'</span></div>';
+    h+='<div class="product-info">';
+    h+='<div class="product-name">'+p.name+'</div>';
+    h+='<div class="product-desc">'+p.desc+'</div>';
+    h+='<div class="product-size">'+p.size+'</div>';
+    h+='<div class="product-footer">';
+    h+='<div class="product-price"><span class="cur">$</span>'+p.price.toFixed(2)+'</div>';
+    if(!stockLoaded){
+      h+='<button class="add-btn" disabled style="opacity:0.4">Loading...</button>';
+    } else if(out){
+      h+='<span style="font-size:0.82rem;color:#8B2020;font-weight:500">Sold out</span>';
+    } else {
+      h+='<div style="display:flex;align-items:center;gap:7px">';
+      h+='<div class="qty-ctrl">';
+      h+='<button class="qty-btn" onclick="cQty('+p.id+',-1)" '+(q<=1?'disabled':'')+'>-</button>';
+      h+='<span class="qty-num">'+q+'</span>';
+      h+='<button class="qty-btn" onclick="cQty('+p.id+',1)" '+(q>=av?'disabled':'')+'>+</button>';
+      h+='</div>';
+      h+='<button class="add-btn" onclick="addCart('+p.id+')" '+(av<=0?'disabled':'')+'>Add to cart</button>';
+      h+='</div>';
+    }
+    h+='</div>';
+    h+='<div class="stock-bar-wrap">';
+    h+='<div class="stock-bar-label" style="color:'+sCol(p)+'">'+(p.stock>0?(p.stock-cart[p.id])+' available':'Sold out')+'</div>';
+    h+='<div class="stock-bar"><div class="stock-fill" style="width:'+pct+'%;background:'+sCol(p)+';opacity:0.45"></div></div>';
+    h+='</div></div></div>';
+  }
+  g.innerHTML=h;
+}
+
+function cQty(id,d){
+  var p=PRODUCTS.find(function(x){return x.id===id;});
+  qty[id]=Math.max(1,Math.min(p.stock-cart[id],qty[id]+d));
+  renderProducts();
+}
+
+function addCart(id){
+  var p=PRODUCTS.find(function(x){return x.id===id;});
+  if(qty[id]>p.stock-cart[id])return;
+  cart[id]+=qty[id];qty[id]=1;
+  notif('Added '+cart[id]+'x '+p.name);
+  updCount();renderProducts();
+}
+
+function updCount(){
+  var t=Object.values(cart).reduce(function(a,b){return a+b;},0);
+  var el=document.getElementById('cartCount');
+  el.textContent=t;el.classList.toggle('visible',t>0);
+}
+
+function renderCart(){
+  var items=document.getElementById('cartItems');
+  var foot=document.getElementById('cartFoot');
+  var en=PRODUCTS.filter(function(p){return cart[p.id]>0;});
+  if(!en.length){items.innerHTML='<div class="cart-empty"><div style="font-size:2.5rem">🫙</div><p>Your cart is empty.</p></div>';foot.style.display='none';return;}
+  var h='';
+  en.forEach(function(p){
+    h+='<div class="cart-item">';
+    h+='<div class="ci-thumb">'+(p.id===2?'🫙🧇':'🫙')+'</div>';
+    h+='<div class="ci-info"><div class="ci-name">'+p.name+'</div><div class="ci-price">'+fmt(p.price)+' · '+p.size+'</div></div>';
+    h+='<div class="ci-ctrl">';
+    h+='<button class="ci-qbtn" onclick="cCartQty('+p.id+',-1)">-</button>';
+    h+='<span class="ci-qnum">'+cart[p.id]+'</span>';
+    h+='<button class="ci-qbtn" onclick="cCartQty('+p.id+',1)" '+(cart[p.id]>=p.stock?'disabled':'')+'>+</button>';
+    h+='</div><div class="ci-total">'+fmt(p.price*cart[p.id])+'</div></div>';
+  });
+  items.innerHTML=h;
+  var s=sub();
+  document.getElementById('cSubtotal').textContent=fmt(s);
+  document.getElementById('cTotal').textContent=fmt(s);
+  foot.style.display='block';
+}
+
+function cCartQty(id,d){
+  var p=PRODUCTS.find(function(x){return x.id===id;});
+  cart[id]=Math.max(0,Math.min(p.stock,cart[id]+d));
+  updCount();renderCart();renderProducts();
+}
+
+document.getElementById('cartToggle').addEventListener('click',function(){renderCart();document.getElementById('cartDrawer').classList.add('open');document.getElementById('cartOverlay').classList.add('open');});
+function closeCart(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('cartOverlay').classList.remove('open');}
+document.getElementById('cartClose').addEventListener('click',closeCart);
+document.getElementById('cartOverlay').addEventListener('click',closeCart);
+document.getElementById('checkoutBtn').addEventListener('click',function(){closeCart();openModal();});
+
+function openModal(){payMethod='et';mStep(1);document.getElementById('modalOverlay').classList.add('open');}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===document.getElementById('modalOverlay'))closeModal();});
+
+function mStep(n){
+  [1,2,3,4].forEach(function(i){
+    document.getElementById('ms'+i).classList.toggle('active',i===n);
+    var pb=document.getElementById('pb'+i);
+    if(pb){pb.classList.toggle('done',i<n);pb.classList.toggle('act',i===n);}
+    var pl=document.getElementById('pl'+i);
+    if(pl)pl.classList.toggle('done',i<n);
+  });
+  if(n===2)updFees();
+  if(n===3)renderRev();
+}
+
+function selPay(m,el){
+  payMethod=m;
+  document.querySelectorAll('.pay-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  document.getElementById('etInfo').classList.toggle('show',m==='et');
+  document.getElementById('ccInfo').classList.toggle('show',m==='cc');
+  document.getElementById('fCCRow').style.display=m==='cc'?'flex':'none';
+  updFees();
+}
+
+function updFees(){
+  var s=sub();var fee=ccFee(s);var tot=payMethod==='cc'?s+fee:s;
+  document.getElementById('fSubtotal').textContent=fmt(s);
+  document.getElementById('fCCVal').textContent='+'+fmt(fee);
+  document.getElementById('fTotal').textContent=fmt(tot);
+}
+
+function renderRev(){
+  var en=PRODUCTS.filter(function(p){return cart[p.id]>0;});
+  var h='';
+  en.forEach(function(p){
+    h+='<div class="sum-item"><span style="font-size:1.5rem">'+(p.id===2?'🫙🧇':'🫙')+'</span>';
+    h+='<div class="sum-item-info"><b>'+p.name+'</b><span>'+p.size+' x '+cart[p.id]+'</span></div>';
+    h+='<div class="sum-item-price">'+fmt(p.price*cart[p.id])+'</div></div>';
+  });
+  document.getElementById('revItems').innerHTML=h;
+  var s=sub();var fee=ccFee(s);var tot=payMethod==='cc'?s+fee:s;
+  document.getElementById('revSub').textContent=fmt(s);
+  document.getElementById('revFee').textContent=fmt(fee);
+  document.getElementById('revFeeRow').style.display=payMethod==='cc'?'flex':'none';
+  document.getElementById('revTotal').textContent=fmt(tot);
+  document.getElementById('revName').textContent=document.getElementById('fname').value+' '+document.getElementById('lname').value;
+  document.getElementById('revEmail').textContent=document.getElementById('email').value;
+  document.getElementById('revPhone').textContent=document.getElementById('phone').value;
+  var pd=document.getElementById('pickupDate').value;
+  var pt=document.getElementById('pickupTime').value;
+  var ds=pd?new Date(pd+'T12:00:00').toLocaleDateString('en-CA',{weekday:'long',month:'long',day:'numeric'}):'';
+  document.getElementById('revPickup').textContent='Pickup: '+ds+', '+pt;
+  document.getElementById('revPay').textContent=payMethod==='et'?'Interac e-Transfer (no fee)':'Credit card via Square';
+}
+
+function genOrderNum(){
+  var d=new Date().toISOString().slice(0,10).replace(/-/g,'');
+  return 'MCK-'+d+'-'+Math.floor(1000+Math.random()*9000);
+}
+
+async function submitForm(p){
+  var fd=new URLSearchParams();
+  Object.keys(p).forEach(function(k){fd.append(k,p[k]||'');});
+  try{await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:fd.toString()});}catch(e){}
+}
+
+// Send confirmation emails to customer and Izzy
+async function sendConfirmation(params) {
+  try {
+    await fetch('https://misschenkayabackup.netlify.app/.netlify/functions/send-confirmation', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(params)
+    });
+  } catch(e) { console.warn('Email send failed:', e); }
+}
+
+// Deduct stock after successful order
+async function deductStock(cartSnapshot) {
+  var items = Object.keys(cartSnapshot)
+    .filter(function(id){ return cartSnapshot[id] > 0; })
+    .map(function(id){ return {id: parseInt(id), qty: cartSnapshot[id]}; });
+  if (!items.length) return;
+  try {
+    await fetch('https://misschenkayabackup.netlify.app/.netlify/functions/deduct-stock', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({items: items})
+    });
+  } catch(e) { console.warn('Stock deduction failed:', e); }
+}
+
+async function placeOrder(){
+  // Validate cart against current stock before proceeding
+  var invalid = false;
+  PRODUCTS.forEach(function(p){
+    if(cart[p.id] > p.stock){
+      alert('Sorry! Only '+p.stock+' x '+p.name+' available. Please update your cart.');
+      cart[p.id] = p.stock;
+      invalid = true;
+    }
+  });
+  if(invalid){ renderProducts(); renderCart(); return; }
+
+  var name=document.getElementById('fname').value;
+  var email=document.getElementById('email').value;
+  var phone=document.getElementById('phone').value;
+  var notes=document.getElementById('notes').value;
+  var s=sub();var fee=payMethod==='cc'?ccFee(s):0;var tot=grand();
+  var pd=document.getElementById('pickupDate').value;
+  var pt=document.getElementById('pickupTime').value;
+  var ds=pd?new Date(pd+'T12:00:00').toLocaleDateString('en-CA',{weekday:'long',month:'long',day:'numeric'}):'';
+  var ps=ds+', '+pt;
+  var items=PRODUCTS.filter(function(p){return cart[p.id]>0;}).map(function(p){return cart[p.id]+'x '+p.name;}).join(', ');
+  var oNum=genOrderNum();
+
+  if(payMethod==='et'){
+    await submitForm({'form-name':'kaya-order','order-number':oNum,'customer-name':name,'customer-email':email,'customer-phone':phone,items:items,subtotal:fmt(s),'processing-fee':'None',total:fmt(tot),'payment-method':'Interac e-Transfer','pickup-date':ds,'pickup-time':pt,notes:notes});
+    document.getElementById('confMsg').textContent='Thank you, '+name+'! Please send '+fmt(tot)+' via Interac e-Transfer.';
+    document.getElementById('confDetail').innerHTML='<strong>Order #:</strong> '+oNum+'<br><strong>Send to:</strong> '+ETRANSFER+'<br><strong>Amount:</strong> '+fmt(tot)+'<br><strong>Message:</strong> '+oNum+' + your name<br><strong>Pickup:</strong> '+ps+'<br><br>Your order is confirmed once payment is received.';
+    var cartSnapshot = Object.assign({}, cart);
+    var itemsArr = PRODUCTS.filter(function(p){return cartSnapshot[p.id]>0;}).map(function(p){return {name:p.name,qty:cartSnapshot[p.id],price:p.price};});
+    var deductItems = Object.keys(cartSnapshot).filter(function(id){return cartSnapshot[id]>0;}).map(function(id){return {id:parseInt(id),qty:cartSnapshot[id]};});
+    // Send email and deduct stock simultaneously
+    await Promise.all([
+      sendConfirmation({orderNum:oNum,customerName:name,firstName:document.getElementById('fname').value,lastName:document.getElementById('lname').value,customerEmail:email,customerPhone:phone,items:itemsArr,subtotal:fmt(s),fee:'None',total:fmt(tot),paymentMethod:'Interac e-Transfer',pickupDate:ds,pickupTime:pt,notes:notes}),
+      fetch('https://misschenkayabackup.netlify.app/.netlify/functions/deduct-stock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:deductItems})})
+    ]);
+    PRODUCTS.forEach(function(p){cart[p.id]=0;qty[p.id]=1;});
+    updCount();mStep(4);
+    // Reload stock from Google Sheet after delay
+    setTimeout(loadStock, 3000);
+  } else {
+    var btn=document.getElementById('placeBtn');
+    btn.disabled=true;btn.textContent='Creating payment link...';
+    try{
+      var res=await fetch('https://misschenkayabackup.netlify.app/.netlify/functions/create-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({orderSummary:'Miss Chen Kaya: '+items,totalCents:Math.round(tot*100),customerName:name,customerEmail:email,pickupDate:ds,pickupTime:pt})});
+      var data;try{data=await res.json();}catch(e){throw new Error('Server error '+res.status);}
+      if(!res.ok||!data.url)throw new Error(data.error||'No payment link returned');
+      await submitForm({'form-name':'kaya-order','order-number':oNum,'customer-name':name,'customer-email':email,'customer-phone':phone,items:items,subtotal:fmt(s),'processing-fee':fmt(fee),total:fmt(tot),'payment-method':'Credit card','pickup-date':ds,'pickup-time':pt,notes:notes});
+      var cartSnapshot2 = Object.assign({}, cart);
+      var itemsArr2 = PRODUCTS.filter(function(p){return cartSnapshot2[p.id]>0;}).map(function(p){return {name:p.name,qty:cartSnapshot2[p.id],price:p.price};});
+      var deductItems2 = Object.keys(cartSnapshot2).filter(function(id){return cartSnapshot2[id]>0;}).map(function(id){return {id:parseInt(id),qty:cartSnapshot2[id]};});
+      await Promise.all([
+        sendConfirmation({orderNum:oNum,customerName:name,firstName:document.getElementById('fname').value,lastName:document.getElementById('lname').value,customerEmail:email,customerPhone:phone,items:itemsArr2,subtotal:fmt(s),fee:fmt(fee),total:fmt(tot),paymentMethod:'Credit card via Square',pickupDate:ds,pickupTime:pt,notes:notes}),
+        fetch('https://misschenkayabackup.netlify.app/.netlify/functions/deduct-stock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:deductItems2})})
+      ]);
+      PRODUCTS.forEach(function(p){cart[p.id]=0;qty[p.id]=1;});
+      updCount();window.location.href=data.url;
+    }catch(err){
+      btn.disabled=false;btn.textContent='Place Order';
+      alert('Problem creating payment link: '+err.message+'\n\nPlease try again or use e-Transfer.');
+    }
+  }
+}
+
+function chkDetails(){
+  var ok=['fname','lname','email','phone','pickupDate','pickupTime'].every(function(id){return document.getElementById(id).value.trim()!=='';});
+  document.getElementById('btnTo2').disabled=!ok;
+}
+['fname','lname','email','phone','pickupDate','pickupTime'].forEach(function(id){document.getElementById(id).addEventListener('input',chkDetails);});
+
+var tom=new Date();tom.setDate(tom.getDate()+1);
+document.getElementById('pickupDate').min=tom.toISOString().split('T')[0];
+
+async function doSignup(){
+  var btn=document.getElementById('mcBtn');
+  var msg=document.getElementById('mcMsg');
+  var email=document.getElementById('mcEmail').value.trim();
+  var fname=document.getElementById('mcFirst').value.trim();
+  if(!email)return;
+  btn.textContent='Signing you up...';btn.disabled=true;msg.style.display='none';
+  try{
+    var res=await fetch('https://misschenkayabackup.netlify.app/.netlify/functions/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,firstName:fname})});
+    var data=await res.json();
+    if(data.success){btn.textContent='You are on the list!';msg.style.display='block';msg.style.color='var(--pandan)';msg.textContent='Thanks! We will email you when new jars are ready.';}
+    else throw new Error(data.error);
+  }catch(err){btn.textContent='Notify me when stock is available';btn.disabled=false;msg.style.display='block';msg.style.color='#8B2020';msg.textContent='Something went wrong: '+(err.message||'Please try again.');}
+}
+
+async function doContact(){
+  var btn=document.getElementById('ctBtn');
+  var msg=document.getElementById('ctMsg');
+  var name=document.getElementById('ctName').value.trim();
+  var email=document.getElementById('ctEmail').value.trim();
+  var message=document.getElementById('ctMessage').value.trim();
+  if(!name||!email||!message){msg.style.display='block';msg.style.color='#8B2020';msg.textContent='Please fill in all fields.';return;}
+  btn.textContent='Sending...';btn.disabled=true;msg.style.display='none';
+  try{
+    var res=await fetch('https://misschenkayabackup.netlify.app/.netlify/functions/send-contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,email:email,message:message})});
+    var data=await res.json();
+    if(data.success){btn.textContent='Message sent!';msg.style.display='block';msg.style.color='var(--pandan)';msg.textContent='Thanks '+name.split(' ')[0]+'! Izzy will get back to you soon.';document.getElementById('ctName').value='';document.getElementById('ctEmail').value='';document.getElementById('ctMessage').value='';}
+    else throw new Error(data.error);
+  }catch(err){btn.textContent='Send Message →';btn.disabled=false;msg.style.display='block';msg.style.color='#8B2020';msg.textContent='Something went wrong — please try again or email misschen@chefalexchen.com directly.';}
+}
+
+function notif(msg){
+  var n=document.getElementById('notif');n.textContent=msg;n.classList.add('show');
+  setTimeout(function(){n.classList.remove('show');},2800);
+}
+
+// Load live stock from Google Sheets via Netlify function
+function loadStock(){
+  fetch('https://misschenkayabackup.netlify.app/.netlify/functions/get-stock')
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if(d && d.stock){
+      PRODUCTS.forEach(function(p){
+        var s = d.stock[p.id] !== undefined ? d.stock[p.id] : d.stock[String(p.id)];
+        if(s !== undefined) p.stock = parseInt(s);
+      });
+    }
+    stockLoaded = true;
+    renderProducts();
+  })
+  .catch(function(e){
+    console.warn('Stock load failed, using defaults:', e);
+    // If load fails, still allow ordering with default stock
+    PRODUCTS[0].stock = 9;
+    PRODUCTS[1].stock = 3;
+    stockLoaded = true;
+    renderProducts();
+  });
+}
+
+renderProducts(); // shows loading state
+loadStock();
+</script>
+</body>
+</html>
