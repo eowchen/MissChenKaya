@@ -273,18 +273,31 @@ footer{background:var(--text-dark);color:var(--cream);padding:3rem clamp(1.5rem,
 <div class="divider">"Sharing food is a way of preserving culture"</div>
 
 <!-- DONATION SECTION -->
-<section style="background:var(--pandan);padding:3rem clamp(1.5rem,5vw,4rem);text-align:center">
-  <div style="max-width:640px;margin:0 auto">
-    <p style="font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(250,246,238,0.6);margin-bottom:0.75rem">Support Izzy's Journey</p>
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;color:var(--cream);line-height:1.25;margin-bottom:0.875rem">Help send Izzy to the<br><em>World Championships</em></h2>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:rgba(250,246,238,0.85);line-height:1.75;margin-bottom:1.75rem;max-width:500px;margin-left:auto;margin-right:auto">Every jar of kaya you buy — and every donation — goes directly toward Isabelle's dream of competing on the world stage. Learn more about her athletic journey at <a href="https://isabellechen.com" target="_blank" rel="noopener" style="color:var(--cream);font-weight:500;text-decoration:underline">isabellechen.com</a>.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-      <a href="https://gofund.me/0065f2521" target="_blank" rel="noopener" style="background:var(--cream);color:var(--pandan);text-decoration:none;padding:14px 28px;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;display:inline-flex;align-items:center;gap:8px">💚 Donate via GoFundMe</a>
-      <a href="mailto:misschen@chefalexchen.com?subject=Donation for Isabelle Chen World Championships&body=Hi! I'd like to send a donation via Interac e-Transfer for Isabelle's World Championship fundraiser.%0A%0AAmount: $%0AName:" style="background:transparent;color:var(--cream);text-decoration:none;padding:14px 28px;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;border:1.5px solid rgba(250,246,238,0.5);display:inline-flex;align-items:center;gap:8px">💸 Donate via e-Transfer</a>
+<section style="background:var(--pandan);padding:3rem clamp(1.5rem,5vw,4rem)">
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:center">
+    <div style="border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.25);flex-shrink:0">
+      <img src="images/podium.jpg" alt="Isabelle Chen on the podium at Wrestling Canada Championships" style="width:100%;height:auto;display:block">
     </div>
-    <p style="font-size:0.78rem;color:rgba(250,246,238,0.5);margin-top:1.25rem">e-Transfer donations go directly to Isabelle — no platform fees.</p>
+    <div>
+      <p style="font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(250,246,238,0.6);margin-bottom:0.75rem">Support Izzy's Wrestling Journey</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;color:var(--cream);line-height:1.25;margin-bottom:0.875rem">Help send Izzy to the<br><em>World Championships<br>in Baku, Azerbaijan</em></h2>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:rgba(250,246,238,0.85);line-height:1.75;margin-bottom:0.875rem">Izzy is a Canadian National Champion wrestler with her sights set on the World stage. She trains every single day — and every jar of kaya she makes is one step closer to Baku.</p>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:rgba(250,246,238,0.85);line-height:1.75;margin-bottom:1.75rem">Your support — whether $5 or $500 — means the world to this young athlete. Every dollar goes directly to Isabelle's training, travel, and competition costs. Learn more at <a href="https://isabellechen.com" target="_blank" rel="noopener" style="color:var(--cream);font-weight:500;text-decoration:underline">isabellechen.com</a>.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="https://gofund.me/0065f2521" target="_blank" rel="noopener" style="background:var(--cream);color:var(--pandan);text-decoration:none;padding:14px 28px;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;display:inline-flex;align-items:center;gap:8px">💚 Donate via GoFundMe</a>
+        <a href="mailto:misschen@chefalexchen.com?subject=Donation for Isabelle Chen World Championships&body=Hi! I'd like to send a donation via Interac e-Transfer for Isabelle's World Championship fundraiser.%0A%0AAmount: $%0AName:" style="background:transparent;color:var(--cream);text-decoration:none;padding:14px 28px;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;border:1.5px solid rgba(250,246,238,0.5);display:inline-flex;align-items:center;gap:8px">💸 Donate via e-Transfer</a>
+      </div>
+      <p style="font-size:0.78rem;color:rgba(250,246,238,0.5);margin-top:1.25rem">e-Transfer donations go directly to Isabelle — no platform fees.</p>
+    </div>
   </div>
 </section>
+
+<!-- RESPONSIVE: stack on mobile -->
+<style>
+@media(max-width:768px){
+  .donate-grid{grid-template-columns:1fr!important}
+}
+</style>
 
 <!-- HERO PRODUCT PHOTO -->
 <section style="background:var(--cream);padding:0 clamp(1.5rem,5vw,4rem) 5rem">
@@ -351,9 +364,9 @@ footer{background:var(--text-dark);color:var(--cream);padding:3rem clamp(1.5rem,
   <div class="storage-note" style="max-width:580px;margin:0 auto 2rem;text-align:center;flex-direction:column;align-items:center;gap:1rem;padding:2rem;">
     <div style="font-size:2.5rem">🫙</div>
     <div>
-      <p style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--text-dark);font-weight:600;margin:0 0 0.5rem">We're updating our ordering system</p>
-      <p style="margin:0 0 1.25rem;line-height:1.7;color:var(--text-mid)">Our online shop will be back very soon. In the meantime, you can place your order by emailing us directly — we'd love to hear from you!</p>
-      <a href="mailto:misschen@chefalexchen.com?subject=Kaya Order&body=Hi Izzy! I'd like to order:%0A%0AClassic Pandan Kaya ($9.00/jar) — qty:%0A%0AName:%0APhone:%0APreferred pickup date and time:" style="display:inline-block;background:var(--pandan);color:var(--cream);text-decoration:none;padding:14px 32px;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:500;">Email Us to Order →</a>
+      <p style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--text-dark);font-weight:600;margin:0 0 0.5rem">Classic Pandan Kaya — $9.00 / 240g jar</p>
+      <p style="margin:0 0 1.25rem;line-height:1.7;color:var(--text-mid)">Our signature Nonya kaya — fragrant pandan, velvety coconut milk, slow-stirred with love. Made fresh and flash-frozen in small batches.</p>
+      <a href="https://forms.gle/VxJ88LFE3KqLxQkq6" target="_blank" rel="noopener" style="display:inline-block;background:var(--pandan);color:var(--cream);text-decoration:none;padding:14px 32px;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:500;">Order Now →</a>
       <p style="margin:1rem 0 0;font-size:0.85rem;color:var(--text-mid)">Or DM us on Instagram <a href="https://instagram.com/misschenkaya" style="color:var(--pandan);text-decoration:none;">@misschenkaya</a></p>
     </div>
   </div>
@@ -376,7 +389,7 @@ footer{background:var(--text-dark);color:var(--cream);padding:3rem clamp(1.5rem,
   <h2>Ready for something<br><em>truly special?</em></h2>
   <p class="tagline">Spreading joy one jar at a time</p>
   <p>Each batch is made fresh and flash-frozen in small quantities. Once they're gone, the next batch takes time — order yours while available.</p>
-  <a href="#shop" class="btn-cream">Order Your Kaya →</a>
+  <a href="https://forms.gle/VxJ88LFE3KqLxQkq6" target="_blank" rel="noopener" class="btn-cream">Order Your Kaya →</a>
 </section>
 
 <section class="signup" id="signup">
