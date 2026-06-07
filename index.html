@@ -205,6 +205,7 @@ footer{background:var(--text-dark);color:var(--cream);padding:3rem clamp(1.5rem,
 .contact-form button:hover{opacity:0.85}
 .contact-form button:disabled{opacity:0.5;cursor:not-allowed}
 .contact-msg{font-size:0.85rem;text-align:center;margin-top:0.25rem;display:none}
+.donate-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:center}
 .foot-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
 .foot-logo{height:60px;width:auto;opacity:0.85;margin-bottom:0.75rem}
 .foot-brand{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:#D4E8C8;margin-bottom:0.5rem}
@@ -223,6 +224,7 @@ footer{background:var(--text-dark);color:var(--cream);padding:3rem clamp(1.5rem,
   .hero-ctas{justify-content:center}.hero-sub{margin:0 auto 2.5rem}
   .story-who,.story-my{grid-template-columns:1fr;gap:2rem}
   .story-visual{max-width:320px;margin:0 auto}
+  .donate-grid{grid-template-columns:1fr!important}
   .foot-grid{grid-template-columns:1fr 1fr}
   .nav-links{display:none}.pay-grid{grid-template-columns:1fr}
 }
@@ -274,30 +276,25 @@ footer{background:var(--text-dark);color:var(--cream);padding:3rem clamp(1.5rem,
 
 <!-- DONATION SECTION -->
 <section style="background:var(--pandan);padding:3rem clamp(1.5rem,5vw,4rem)">
-  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:center">
-    <div style="border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.25);flex-shrink:0">
-      <img src="images/podium.jpg" alt="Isabelle Chen on the podium at Wrestling Canada Championships" style="width:100%;height:auto;display:block">
-    </div>
-    <div>
-      <p style="font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(250,246,238,0.6);margin-bottom:0.75rem">Support Izzy's Wrestling Journey</p>
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;color:var(--cream);line-height:1.25;margin-bottom:0.875rem">Help send Izzy to the<br><em>World Championships<br>in Baku, Azerbaijan</em></h2>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:rgba(250,246,238,0.85);line-height:1.75;margin-bottom:0.875rem">Izzy is a Canadian National Champion wrestler with her sights set on the World stage. She trains every single day — and every jar of kaya she makes is one step closer to Baku.</p>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:rgba(250,246,238,0.85);line-height:1.75;margin-bottom:1.75rem">Your support — whether $5 or $500 — means the world to this young athlete. Every dollar goes directly to Isabelle's training, travel, and competition costs. Learn more at <a href="https://isabellechen.com" target="_blank" rel="noopener" style="color:var(--cream);font-weight:500;text-decoration:underline">isabellechen.com</a>.</p>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap">
-        <a href="https://gofund.me/0065f2521" target="_blank" rel="noopener" style="background:var(--cream);color:var(--pandan);text-decoration:none;padding:14px 28px;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;display:inline-flex;align-items:center;gap:8px">💚 Donate via GoFundMe</a>
-        <a href="mailto:misschen@chefalexchen.com?subject=Donation for Isabelle Chen World Championships&body=Hi! I'd like to send a donation via Interac e-Transfer for Isabelle's World Championship fundraiser.%0A%0AAmount: $%0AName:" style="background:transparent;color:var(--cream);text-decoration:none;padding:14px 28px;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;border:1.5px solid rgba(250,246,238,0.5);display:inline-flex;align-items:center;gap:8px">💸 Donate via e-Transfer</a>
+  <div style="max-width:900px;margin:0 auto">
+    <div class="donate-grid">
+      <div style="border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.25)">
+        <img src="images/podium.jpg" alt="Isabelle Chen on the podium at Wrestling Canada Championships" style="width:100%;height:auto;display:block">
       </div>
-      <p style="font-size:0.78rem;color:rgba(250,246,238,0.5);margin-top:1.25rem">e-Transfer donations go directly to Isabelle — no platform fees.</p>
+      <div>
+        <p style="font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(250,246,238,0.6);margin-bottom:0.75rem">Support Izzy's Wrestling Journey</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;color:var(--cream);line-height:1.25;margin-bottom:0.875rem">Help send Izzy to the<br><em>World Championships<br>in Baku, Azerbaijan</em></h2>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:rgba(250,246,238,0.85);line-height:1.75;margin-bottom:0.875rem">Izzy is a Canadian National Champion wrestler with her sights set on the World stage. She trains every single day — and every jar of kaya she makes is one step closer to Baku.</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:rgba(250,246,238,0.85);line-height:1.75;margin-bottom:1.75rem">Your support — whether $5 or $500 — means the world to this young athlete. Every dollar goes directly to Isabelle's training, travel, and competition costs. Learn more at <a href="https://isabellechen.com" target="_blank" rel="noopener" style="color:var(--cream);font-weight:500;text-decoration:underline">isabellechen.com</a> or follow her journey <a href="https://instagram.com/chenimals" target="_blank" rel="noopener" style="color:var(--cream);font-weight:500;text-decoration:underline">@chenimals</a>.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="https://gofund.me/0065f2521" target="_blank" rel="noopener" style="background:var(--cream);color:var(--pandan);text-decoration:none;padding:14px 28px;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;display:inline-flex;align-items:center;gap:8px">💚 Donate via GoFundMe</a>
+          <a href="mailto:misschen@chefalexchen.com?subject=Donation for Isabelle Chen World Championships&body=Hi! I'd like to send a donation via Interac e-Transfer for Isabelle's World Championship fundraiser.%0A%0AAmount: $%0AName:" style="background:transparent;color:var(--cream);text-decoration:none;padding:14px 28px;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;border:1.5px solid rgba(250,246,238,0.5);display:inline-flex;align-items:center;gap:8px">💸 Donate via e-Transfer</a>
+        </div>
+        <p style="font-size:0.78rem;color:rgba(250,246,238,0.5);margin-top:1.25rem">e-Transfer donations go directly to Isabelle — no platform fees.</p>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- RESPONSIVE: stack on mobile -->
-<style>
-@media(max-width:768px){
-  .donate-grid{grid-template-columns:1fr!important}
-}
-</style>
 
 <!-- HERO PRODUCT PHOTO -->
 <section style="background:var(--cream);padding:0 clamp(1.5rem,5vw,4rem) 5rem">
