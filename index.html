@@ -504,8 +504,8 @@ footer{background:var(--text-dark);color:var(--cream);padding:3rem clamp(1.5rem,
           <div class="psub">Secure Square link. Processing fee added.</div>
         </label>
       </div>
-      <div class="info-box info-green show" id="etInfo"><strong>How it works:</strong> Send your Interac e-Transfer to <strong>misschen@chefalexchen.com</strong> for the exact amount shown.</div>
-      <div class="info-box info-blue" id="ccInfo"><strong>Credit card fee:</strong> Square charges 2.9% + $0.30. This fee is added to your total. You'll be redirected to Square's secure checkout.</div>
+      <div class="info-box info-green show" id="etInfo"><strong>How it works:</strong> Send your Interac e-Transfer to <strong>misschen@chefalexchen.com</strong> for the exact amount shown.<br><br>💚 <strong>Your order is not confirmed until payment is received.</strong> Once we receive your e-Transfer, we'll lovingly set aside your jars and reach out with pickup details. We can't wait to share this kaya with you!</div>
+      <div class="info-box info-blue" id="ccInfo"><strong>Credit card fee:</strong> Square charges 2.9% + $0.30. This fee is added to your total. You'll be redirected to Square's secure checkout.<br><br>💚 <strong>Your order is not confirmed until payment is completed.</strong> Once your payment goes through, we'll lovingly set aside your jars and reach out with pickup details. We can't wait to share this kaya with you!</div>
       <div style="margin-top:1rem;border-top:1px solid var(--border);padding-top:0.875rem">
         <div class="fee-row"><span>Order subtotal</span><span id="fSubtotal"></span></div>
         <div class="fee-row fee-warn" id="fCCRow" style="display:none"><span>Square processing fee (2.9% + $0.30)</span><span id="fCCVal"></span></div>
@@ -787,7 +787,7 @@ async function placeOrder(){
   if(payMethod==='et'){
     await submitForm({'form-name':'kaya-order','order-number':oNum,'customer-name':name,'customer-email':email,'customer-phone':phone,items:items,subtotal:fmt(s),'processing-fee':'None',total:fmt(tot),'payment-method':'Interac e-Transfer','pickup-date':ds,'pickup-time':pt,notes:notes});
     document.getElementById('confMsg').textContent='Thank you, '+name+'! Please send '+fmt(tot)+' via Interac e-Transfer.';
-    document.getElementById('confDetail').innerHTML='<strong>Order #:</strong> '+oNum+'<br><strong>Send to:</strong> '+ETRANSFER+'<br><strong>Amount:</strong> '+fmt(tot)+'<br><strong>Message:</strong> '+oNum+' + your name<br><strong>Pickup:</strong> '+ps+'<br><br>Your order is confirmed once payment is received.';
+    document.getElementById('confDetail').innerHTML='<strong>Order #:</strong> '+oNum+'<br><strong>Send to:</strong> '+ETRANSFER+'<br><strong>Amount:</strong> '+fmt(tot)+'<br><strong>Message:</strong> '+oNum+' + your name<br><strong>Pickup:</strong> '+ps+'<br><br>💚 Once we receive your payment, we\'ll set aside your jars and reach out with pickup details. Thank you for supporting Izzy\'s kaya journey!';
     var cartSnapshot = Object.assign({}, cart);
     var itemsArr = PRODUCTS.filter(function(p){return cartSnapshot[p.id]>0;}).map(function(p){return {name:p.name,qty:cartSnapshot[p.id],price:p.price};});
     var deductItems = Object.keys(cartSnapshot).filter(function(id){return cartSnapshot[id]>0;}).map(function(id){return {id:parseInt(id),qty:cartSnapshot[id]};});
