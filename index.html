@@ -251,7 +251,7 @@ footer{background:var(--text-dark);color:var(--cream);padding:3rem clamp(1.5rem,
     <li><a href="#signup">Updates</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="cart-btn" id="cartToggle" style="display:none">🛒 Cart <span class="cart-count" id="cartCount">0</span></button>
+  <button class="cart-btn" id="cartToggle">🛒 Cart <span class="cart-count" id="cartCount">0</span></button>
 </nav>
 
 <section class="hero" id="top">
@@ -358,17 +358,11 @@ footer{background:var(--text-dark);color:var(--cream);padding:3rem clamp(1.5rem,
     <h2>Order Your Kaya</h2>
     <p>Every jar is made fresh and flash-frozen to lock in flavour — so you get kaya at its very best, whenever you're ready for it.</p>
   </div>
-  <div class="storage-note" style="max-width:580px;margin:0 auto 2rem;text-align:center;flex-direction:column;align-items:center;gap:1rem;padding:2rem;">
-    <div style="font-size:2.5rem">🫙</div>
-    <div>
-      <p style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--pandan);font-weight:600;margin:0 0 0.5rem">Pre-Orders Now Open!</p>
-      <p style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text-dark);font-weight:600;margin:0 0 0.5rem">Classic Pandan Kaya — $8.50 / 240ml jar</p>
-      <p style="margin:0 0 0.5rem;line-height:1.7;color:var(--text-mid)">Pre-orders close <strong>June 27th</strong>. Pickup in North Steveston, Richmond starting <strong>July 6th</strong> onwards.</p>
-      <p style="margin:0 0 1.25rem;line-height:1.7;color:var(--text-mid)">Made in small batches so every jar is fresh and made with love — don't wait, once this window closes that's it!</p>
-      <a href="https://forms.gle/ypMd1Zi1cgQcq5JD7" target="_blank" rel="noopener" style="display:inline-block;background:var(--pandan);color:var(--cream);text-decoration:none;padding:14px 32px;border-radius:40px;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:500;">Pre-Order Now →</a>
-      <p style="margin:1rem 0 0;font-size:0.85rem;color:var(--text-mid)">Or DM us on Instagram <a href="https://instagram.com/misschenkaya" style="color:var(--pandan);text-decoration:none;">@misschenkaya</a>, text (604) 655-8608, or email <a href="mailto:misschen@chefalexchen.com" style="color:var(--pandan);text-decoration:none;">misschen@chefalexchen.com</a></p>
-    </div>
+  <div class="storage-note">
+    <div style="font-size:1.75rem;flex-shrink:0">🧊</div>
+    <p>Jars arrive frozen and can be kept in the freezer for <strong>3–4 months</strong>. When ready to enjoy, thaw overnight in the fridge and use within <strong>30 days of thawing</strong>.</p>
   </div>
+  <div class="products-grid" id="productsGrid"></div>
 </section>
 
 <section class="how" id="how">
@@ -388,7 +382,7 @@ footer{background:var(--text-dark);color:var(--cream);padding:3rem clamp(1.5rem,
   <h2>Ready for something<br><em>truly special?</em></h2>
   <p class="tagline">Spreading joy one jar at a time</p>
   <p>Each batch is made fresh and flash-frozen in small quantities. Once they're gone, the next batch takes time — order yours while available.</p>
-  <a href="https://forms.gle/ypMd1Zi1cgQcq5JD7" target="_blank" rel="noopener" class="btn-cream">Pre-Order Now →</a>
+  <a href="#shop" class="btn-cream">Order Your Kaya →</a>
 </section>
 
 <section class="signup" id="signup">
@@ -558,7 +552,7 @@ footer{background:var(--text-dark);color:var(--cream);padding:3rem clamp(1.5rem,
 <script>
 var PRODUCTS = [
   {id:1,name:'Classic Pandan Kaya',desc:'Our signature Nonya kaya — fragrant pandan, velvety coconut milk, slow-stirred with love.',size:'240g jar',price:8.50,stock:0,maxStock:36},
-  {id:2,name:'Kaya & Mini Waffle Bundle',desc:'',size:'',price:18.00,stock:0,maxStock:36,hidden:true}
+  {id:2,name:'Kaya & Mini Waffle Bundle',desc:'One jar of Classic Pandan Kaya paired with a 6-pack of mini Belgian waffles. A perfect match.',size:'240g jar + 6 mini waffles',price:18.00,stock:0,maxStock:36}
 ];
 var stockLoaded = false; // prevents ordering before real stock loads
 var ETRANSFER='misschen@chefalexchen.com';
@@ -579,7 +573,6 @@ function renderProducts(){
   var h='';
   for(var i=0;i<PRODUCTS.length;i++){
     var p=PRODUCTS[i];
-    if(p.hidden)continue;
     var av=p.stock-cart[p.id];
     var q=qty[p.id];
     var out=p.stock===0;
